@@ -10,8 +10,10 @@ It's a wrapper to the community cookbook.
 
 ## Usage
 
-Include `chef-simple-dcos::master` or `chef-simple-dcos::slave` in your
+Include `chef-simple-dcos::master`, `chef-simple-dcos::slave` or `chef-simple-dcos::slave_public` in your
 node's `run_list`. 
+
+You need at one one instance of each role running to test DCOS properly. Use 16 GB like DCOS documentation recommends.
 
 ## License and Authors
 
