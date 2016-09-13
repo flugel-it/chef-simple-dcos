@@ -10,12 +10,14 @@ if master.length != 1
   end
 end
 
-master_ip = master[0]['ipaddress']
+master_ip = master[0]["ipaddress"]
 
-if node == master[0]
+if node["recipes"].include?("chef-simple-dcos::master")
   role = "master"
-else
+elsif node["recipes"].include?("chef-simple-dcos::slave")
   role = "slave"
+elsif node["recipes"].include?("chef-simple-dcos::slave_public")
+  role = "slave_public"
 end
 
 file "/tmp/debug" do
@@ -25,5 +27,5 @@ end
 node.default["dcos"]['dcos_role'] = role
 node.default["dcos"]['master_list'] = [ master_ip ]
 
-include_recipe 'dcos'
+include_recipe "dcos"
 
